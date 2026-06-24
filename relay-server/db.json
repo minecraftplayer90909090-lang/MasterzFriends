@@ -1,0 +1,24 @@
+{
+  "users": {
+    "1480888281028759729": {
+      "discord_id": "1480888281028759729",
+      "username": "drd912",
+      "avatar": "ec7c50a8b6432a0bbb963441808e5253"
+    }
+  },
+  "friends": {},
+  "sessions": {
+    "f41fc9eb-9380-41c5-8f40-e32b9fd0973b": {
+      "code": "f41fc9eb-9380-41c5-8f40-e32b9fd0973b",
+      "token": null,
+      "discord_id": null,
+      "username": null
+    },
+    "f41fc9eb-9380-41c5-8f40-e32b9fd0973b\",\"code\":\"f41fc9eb-9380-41c5-8f40-e32b9fd0973b": {
+      "token": "2a9d5dd3-147e-4fd9-bc96-9570f7bd8a43",
+      "discord_id": "1480888281028759729",
+      "username": "drd912"
+    }
+  },
+  "messages": []
+}

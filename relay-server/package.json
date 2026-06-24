@@ -1,0 +1,14 @@
+{
+  "name": "masterz-friends-relay",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "server.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.0",
+    "express": "^4.19.0",
+    "sql.js": "^1.14.1",
+    "uuid": "^9.0.0",
+    "ws": "^8.17.0"
+  }
+}
