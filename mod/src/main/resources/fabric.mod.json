@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "masterzfriends",
+  "version": "${version}",
+  "name": "Masterz Friends",
+  "description": "Discord-auth friend system and P2P chat for offline Minecraft accounts.",
+  "authors": ["AbhayTheMaster"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.abhaythemaster.masterzfriends.MasterzFriends"]
+  },
+  "mixins": ["masterzfriends.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "fabric-api": "*",
+    "minecraft": "~1.21.1"
+  }
+}

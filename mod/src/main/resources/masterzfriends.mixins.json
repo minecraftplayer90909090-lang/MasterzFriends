@@ -1,0 +1,8 @@
+{
+  "required": true,
+  "package": "com.abhaythemaster.masterzfriends.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [],
+  "client": ["ChatHudMixin"],
+  "injectors": { "defaultRequire": 1 }
+}
