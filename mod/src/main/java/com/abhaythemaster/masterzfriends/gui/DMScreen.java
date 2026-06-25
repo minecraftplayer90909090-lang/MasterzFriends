@@ -2,6 +2,7 @@ package com.abhaythemaster.masterzfriends.gui;
 
 import com.abhaythemaster.masterzfriends.MasterzFriends;
 import com.abhaythemaster.masterzfriends.friends.FriendManager;
+import com.google.gson.JsonObject;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -9,6 +10,7 @@ import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class DMScreen extends Screen {
     private final Screen parent;
@@ -34,10 +36,13 @@ public class DMScreen extends Screen {
         setInitialFocus(input);
         addDrawableChild(ButtonWidget.builder(Text.literal("§bSend"), btn -> send())
             .dimensions(width / 2 + 116, height - 26, 40, 18).build());
-        MasterzFriends.relayClient.onDM(pkt -> {
-            if (pkt.get("from_id").getAsString().equals(friend.discordId))
+
+        Consumer<JsonObject> dmHandler = pkt -> {
+            if (pkt.get("from_id").getAsString().equals(friend.discordId)) {
                 messages.add(new String[]{friend.username, pkt.get("message").getAsString()});
-        });
+            }
+        };
+        MasterzFriends.relayClient.onDM(dmHandler);
     }
 
     private void send() {
@@ -63,7 +68,8 @@ public class DMScreen extends Screen {
             if (y > 28 && y < height - 32) {
                 boolean own = "You".equals(m[0]);
                 ctx.drawTextWithShadow(textRenderer,
-                    Text.literal((own ? "§b[You] §f" : "§e[" + m[0] + "] §f") + m[1]), px + 8, y, 0xFFFFFFFF);
+                    Text.literal((own ? "§b[You] §f" : "§e[" + m[0] + "] §f") + m[1]),
+                    px + 8, y, 0xFFFFFFFF);
             }
             y += 13;
         }
