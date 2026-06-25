@@ -18,8 +18,8 @@ import org.slf4j.LoggerFactory;
 public class MasterzFriends implements ClientModInitializer {
     public static final String MOD_ID = "masterzfriends";
     public static final Logger LOGGER = LoggerFactory.getLogger("Masterz Friends");
-    public static final String RELAY_WS = "ws://localhost:3000";
-    public static final String RELAY_HTTP = "http://localhost:3000";
+    public static final String RELAY_WS = "wss://joy-republic-blacks-clips.trycloudflare.com";
+    public static final String RELAY_HTTP = "https://joy-republic-blacks-clips.trycloudflare.com";
 
     public static RelayClient relayClient;
     public static FriendManager friendManager;
