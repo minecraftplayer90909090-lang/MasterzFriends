@@ -5,14 +5,19 @@ import com.abhaythemaster.masterzfriends.friends.FriendManager;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.text.Text;
 import java.net.URI;
 import java.net.http.*;
 import java.util.concurrent.*;
+import java.util.function.Consumer;
 
 public class RelayClient {
     private static final Gson GSON = new Gson();
     private WebSocket ws;
     private boolean connected = false;
+    private Consumer<JsonObject> dmCallback;
+
+    public void onDM(Consumer<JsonObject> cb) { this.dmCallback = cb; }
 
     public void connect(String token) {
         if (connected) return;
@@ -82,11 +87,12 @@ public class RelayClient {
                 case "dm" -> {
                     String from = pkt.get("from_username").getAsString();
                     String msg = pkt.get("message").getAsString();
+                    if (dmCallback != null) dmCallback.accept(pkt);
                     MinecraftClient.getInstance().execute(() -> {
                         var hud = MinecraftClient.getInstance().inGameHud;
                         if (hud != null)
                             hud.getChatHud().addMessage(
-                                net.minecraft.text.Text.literal("§b[MZF DM] §e" + from + " §7» §f" + msg));
+                                Text.literal("§b[MZF DM] §e" + from + " §7» §f" + msg));
                     });
                 }
                 case "friend_request" -> {
@@ -96,7 +102,7 @@ public class RelayClient {
                         var hud = MinecraftClient.getInstance().inGameHud;
                         if (hud != null)
                             hud.getChatHud().addMessage(
-                                net.minecraft.text.Text.literal("§b[MZF] §e" + from + " §fne friend request bheja! §7/mzf friend accept " + fromId));
+                                Text.literal("§b[MZF] §e" + from + " §fne friend request bheja! §7/mzf friend accept " + fromId));
                     });
                 }
                 case "friend_accepted" -> {
@@ -108,7 +114,7 @@ public class RelayClient {
                         var hud = MinecraftClient.getInstance().inGameHud;
                         if (hud != null)
                             hud.getChatHud().addMessage(
-                                net.minecraft.text.Text.literal("§b[MZF] §a" + from + " ne request accept kar li!"));
+                                Text.literal("§b[MZF] §a" + from + " ne request accept kar li!"));
                     });
                 }
                 case "friend_list" ->
@@ -138,14 +144,13 @@ public class RelayClient {
         @Override
         public CompletionStage<?> onClose(WebSocket ws, int code, String reason) {
             connected = false;
-            MasterzFriends.LOGGER.warn("[MasterzFriends] Relay disconnected");
             return WebSocket.Listener.super.onClose(ws, code, reason);
         }
 
         @Override
         public void onError(WebSocket ws, Throwable e) {
             connected = false;
-            MasterzFriends.LOGGER.error("[MasterzFriends] WS error: " + e.getMessage());
+            MasterzFriends.LOGGER.error("WS error: " + e.getMessage());
         }
     }
 }
