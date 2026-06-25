@@ -1,0 +1,33 @@
+name: Build Masterz Friends
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Make gradlew executable
+        run: chmod +x mod/gradlew
+
+      - name: Build mod
+        working-directory: mod
+        run: ./gradlew build --no-daemon
+
+      - name: Upload JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: masterz-friends-mod
+          path: mod/build/libs/masterz-friends-*.jar
+          if-no-files-found: error
