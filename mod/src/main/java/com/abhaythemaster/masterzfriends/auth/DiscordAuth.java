@@ -3,7 +3,10 @@ package com.abhaythemaster.masterzfriends.auth;
 import com.abhaythemaster.masterzfriends.MasterzFriends;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import java.awt.Desktop;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.text.ClickEvent;
+import net.minecraft.text.Style;
+import net.minecraft.text.Text;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.*;
@@ -23,15 +26,27 @@ public class DiscordAuth {
             try {
                 HttpClient client = HttpClient.newHttpClient();
                 HttpRequest req = HttpRequest.newBuilder()
-                    .uri(URI.create(MasterzFriends.RELAY_HTTP + "/auth/url")).GET().build();
+                    .uri(URI.create(MasterzFriends.RELAY_HTTP + "/auth/url"))
+                    .GET().build();
                 HttpResponse<String> resp = client.send(req, HttpResponse.BodyHandlers.ofString());
                 JsonObject json = GSON.fromJson(resp.body(), JsonObject.class);
                 String authUrl = json.get("url").getAsString();
                 String code = json.get("code").getAsString();
 
-                try { Desktop.getDesktop().browse(URI.create(authUrl)); }
-                catch (Exception e) { MasterzFriends.LOGGER.info("Open this URL: " + authUrl); }
+                // Chat mein clickable URL show karo
+                MinecraftClient.getInstance().execute(() -> {
+                    var hud = MinecraftClient.getInstance().inGameHud;
+                    if (hud != null) {
+                        hud.getChatHud().addMessage(
+                            Text.literal("§b[MZF] §fNeeche URL pe click karo Discord login ke liye:"));
+                        hud.getChatHud().addMessage(
+                            Text.literal("§b§n" + authUrl)
+                                .setStyle(Style.EMPTY.withClickEvent(
+                                    new ClickEvent(ClickEvent.Action.OPEN_URL, authUrl))));
+                    }
+                });
 
+                // Poll karo 2 min tak
                 for (int i = 0; i < 120; i++) {
                     Thread.sleep(1000);
                     HttpRequest poll = HttpRequest.newBuilder()
@@ -46,6 +61,12 @@ public class DiscordAuth {
                             username = d.get("username").getAsString();
                             loggedIn = true;
                             saveAuth();
+                            MinecraftClient.getInstance().execute(() -> {
+                                var hud = MinecraftClient.getInstance().inGameHud;
+                                if (hud != null)
+                                    hud.getChatHud().addMessage(
+                                        Text.literal("§b[MZF] §aLogin successful! Welcome §b" + username));
+                            });
                             return true;
                         }
                     }
@@ -71,7 +92,9 @@ public class DiscordAuth {
             o.addProperty("username", username);
             Files.createDirectories(Path.of("config"));
             Files.writeString(Path.of(CONFIG), GSON.toJson(o));
-        } catch (IOException e) { MasterzFriends.LOGGER.error("Save auth failed: " + e.getMessage()); }
+        } catch (IOException e) {
+            MasterzFriends.LOGGER.error("Save failed: " + e.getMessage());
+        }
     }
 
     private void loadSaved() {
@@ -83,7 +106,7 @@ public class DiscordAuth {
             discordId = o.get("discord_id").getAsString();
             username = o.get("username").getAsString();
             loggedIn = true;
-            MasterzFriends.LOGGER.info("[MasterzFriends] Auto-login as " + username);
+            MasterzFriends.LOGGER.info("[MZF] Auto-login: " + username);
         } catch (Exception ignored) {}
     }
 

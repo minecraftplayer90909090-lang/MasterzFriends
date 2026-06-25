@@ -4,6 +4,9 @@
       "discord_id": "1480888281028759729",
       "username": "drd912",
       "avatar": "ec7c50a8b6432a0bbb963441808e5253"
+    },
+    "undefined": {
+      "avatar": ""
     }
   },
   "friends": {},
@@ -29,6 +32,111 @@
       "token": "7c236ba3-e52d-44e3-828d-7254a7a489e7",
       "discord_id": "1480888281028759729",
       "username": "drd912"
+    },
+    "undefined": {
+      "token": "50e077e0-237d-4f07-b8cd-badc65c19ad6"
+    },
+    "5218b4ad-67a8-4bcd-a85d-396cf1b08c8b": {
+      "code": "5218b4ad-67a8-4bcd-a85d-396cf1b08c8b",
+      "token": null,
+      "discord_id": null,
+      "username": null
+    },
+    "b5e3a161-04e0-4e77-98a2-49847a8ca9b4": {
+      "code": "b5e3a161-04e0-4e77-98a2-49847a8ca9b4",
+      "token": null,
+      "discord_id": null,
+      "username": null
+    },
+    "668d0334-c78d-43ea-a2d2-93a9a9ad603f": {
+      "code": "668d0334-c78d-43ea-a2d2-93a9a9ad603f",
+      "token": null,
+      "discord_id": null,
+      "username": null
+    },
+    "6b47369d-85aa-498f-811f-86a0705ffc73": {
+      "code": "6b47369d-85aa-498f-811f-86a0705ffc73",
+      "token": null,
+      "discord_id": null,
+      "username": null
+    },
+    "52985286-92cb-4f21-8c08-e22002e5fb24": {
+      "code": "52985286-92cb-4f21-8c08-e22002e5fb24",
+      "token": null,
+      "discord_id": null,
+      "username": null
+    },
+    "b290521e-2e48-43b4-a711-b84946412786": {
+      "code": "b290521e-2e48-43b4-a711-b84946412786",
+      "token": null,
+      "discord_id": null,
+      "username": null
+    },
+    "12976340-a615-4f30-8686-aa9df426cd80": {
+      "code": "12976340-a615-4f30-8686-aa9df426cd80",
+      "token": null,
+      "discord_id": null,
+      "username": null
+    },
+    "88e750bd-9c12-4eed-81ca-9ad9a1fe8157": {
+      "code": "88e750bd-9c12-4eed-81ca-9ad9a1fe8157",
+      "token": null,
+      "discord_id": null,
+      "username": null
+    },
+    "76b4ab55-daff-4d30-b50c-b8ffc8b7fa9e": {
+      "code": "76b4ab55-daff-4d30-b50c-b8ffc8b7fa9e",
+      "token": null,
+      "discord_id": null,
+      "username": null
+    },
+    "0f1f0866-4b6c-4b11-be7e-408eddb4fc1a": {
+      "code": "0f1f0866-4b6c-4b11-be7e-408eddb4fc1a",
+      "token": null,
+      "discord_id": null,
+      "username": null
+    },
+    "f80d74b4-56c8-473d-a68e-8955982cc75a": {
+      "code": "f80d74b4-56c8-473d-a68e-8955982cc75a",
+      "token": null,
+      "discord_id": null,
+      "username": null
+    },
+    "3161bf68-75c3-412f-8c14-66a2d4df59ec": {
+      "code": "3161bf68-75c3-412f-8c14-66a2d4df59ec",
+      "token": null,
+      "discord_id": null,
+      "username": null
+    },
+    "6cabe5a1-1e7d-4c42-aafd-07ab06d963ad": {
+      "code": "6cabe5a1-1e7d-4c42-aafd-07ab06d963ad",
+      "token": null,
+      "discord_id": null,
+      "username": null
+    },
+    "7ab25688-54fb-4b93-a9a1-5e8fae1deb23": {
+      "code": "7ab25688-54fb-4b93-a9a1-5e8fae1deb23",
+      "token": null,
+      "discord_id": null,
+      "username": null
+    },
+    "599a24c1-bc40-4696-8288-ec2a1d899013": {
+      "code": "599a24c1-bc40-4696-8288-ec2a1d899013",
+      "token": null,
+      "discord_id": null,
+      "username": null
+    },
+    "a3b871ed-9e5c-48b4-9379-a8dda4dd355f": {
+      "code": "a3b871ed-9e5c-48b4-9379-a8dda4dd355f",
+      "token": null,
+      "discord_id": null,
+      "username": null
+    },
+    "b2a7b602-a2ef-4205-af7f-8bb2f7f94292": {
+      "code": "b2a7b602-a2ef-4205-af7f-8bb2f7f94292",
+      "token": null,
+      "discord_id": null,
+      "username": null
     }
   },
   "messages": []
